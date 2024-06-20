@@ -5,12 +5,12 @@ Language: Cpp
 MaxEmptyLinesToKeep: 3
 AlignAfterOpenBracket: Align
 AlignArrayOfStructures: Right
-AlignConsecutiveAssignments:
-  Enabled: false
-  AcrossEmptyLines: false
-  AcrossComments: false
-  AlignCompound: true
-  PadOperators: true
+# AlignConsecutiveAssignments:
+#   Enabled: false
+#   AcrossEmptyLines: false
+#   AcrossComments: false
+#   AlignCompound: true
+#   PadOperators: true
 AlignConsecutiveBitFields:
   Enabled: true
   AcrossEmptyLines: false
