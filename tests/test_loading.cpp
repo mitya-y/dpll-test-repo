@@ -1,11 +1,13 @@
 #include "../algorithm/dimacs_loader.hpp"
 #include "googletest/googletest/include/gtest/gtest.h"
 
-TEST(TestLoading, TestNotExistingFile) {
+TEST(TestLoading, TestNotExistingFile)
+{
   ASSERT_FALSE(load_cnf("not_exist.cnf"));
 }
 
-bool check_default_data(DimacsFormat &cnf) {
+bool check_default_data(DimacsFormat &cnf)
+{
   if (cnf.conjunctions.size() != 2) return false;
   DimacsFormat format{
       {1, 2, 3},  // set of variables
@@ -17,19 +19,22 @@ bool check_default_data(DimacsFormat &cnf) {
   return cnf == format;
 }
 
-TEST(TestLoading, TestCorrectLoadingSimpleFile) {
+TEST(TestLoading, TestCorrectLoadingSimpleFile)
+{
   auto cnf = load_cnf("files/example.cnf");
   ASSERT_TRUE(cnf);
   ASSERT_TRUE(check_default_data(cnf.value()));
 }
 
-TEST(TestLoading, TestComments) {
+TEST(TestLoading, TestComments)
+{
   auto cnf = load_cnf("files/comments.cnf");
   ASSERT_TRUE(cnf);
   ASSERT_TRUE(check_default_data(cnf.value()));
 }
 
-TEST(TestLoading, TestEmptyLines) {
+TEST(TestLoading, TestEmptyLines)
+{
   auto cnf = load_cnf("files/empty_lines.cnf");
   ASSERT_TRUE(cnf);
   ASSERT_TRUE(check_default_data(cnf.value()));

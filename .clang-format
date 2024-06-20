@@ -9,6 +9,8 @@ QualifierAlignment: Custom
 QualifierOrder: ['inline', 'static', 'const', 'volatile', 'type']
 SeparateDefinitionBlocks: Always
 
+BreakBeforeBraces: Stroustrup
+
 IncludeCategories:
   - Regex: '<(gmock|gtest).+>'
     Priority: 1

@@ -14,14 +14,16 @@ struct Variable {
   std::vector<std::pair<uint, bool>> occurance;
 };
 
-static void set_satisfied_flag(const std::vector<Variable> &variables, Conjunction &con) {
+static void set_satisfied_flag(const std::vector<Variable> &variables, Conjunction &con)
+{
   con.satisfied = std::any_of(con.disjunctions.begin(), con.disjunctions.end(), [&variables](const auto &v) {
     return (!(v.first ^ variables[v.second].value)) && variables[v.second].used;
   });
 }
 
 static bool unit_propagation(DimacsFormat &sat, std::vector<Variable> &variables, std::set<uint> &positive,
-                             std::set<uint> &negative, std::set<uint> &all) {
+                             std::set<uint> &negative, std::set<uint> &all)
+{
   uint cnt = 0;
   bool changed = false;
   // for (auto [i, con] : std::views::enumerate(sat.conjunctions)) {
@@ -52,7 +54,8 @@ static bool unit_propagation(DimacsFormat &sat, std::vector<Variable> &variables
 }
 
 static void pure_variable_elimination(DimacsFormat &sat, std::vector<Variable> &variables, std::set<uint> &positive,
-                                      std::set<uint> &negative, std::set<uint> &all) {
+                                      std::set<uint> &negative, std::set<uint> &all)
+{
   // for (const auto [index, variable] : std::views::enumerate(variables)) {
   uint index = 0;
   for (auto variable : variables) {
@@ -76,7 +79,8 @@ static void pure_variable_elimination(DimacsFormat &sat, std::vector<Variable> &
   }
 }
 
-static bool check_satisfaing(const DimacsFormat &sat, const std::vector<Variable> &variables) {
+static bool check_satisfaing(const DimacsFormat &sat, const std::vector<Variable> &variables)
+{
   for (auto &con : sat.conjunctions) {
     // if (con.satisfied)
     //   continue;
@@ -90,13 +94,15 @@ static bool check_satisfaing(const DimacsFormat &sat, const std::vector<Variable
   return true;
 }
 
-static bool check_success(const DimacsFormat &sat) {
+static bool check_success(const DimacsFormat &sat)
+{
   return std::all_of(sat.conjunctions.begin(), sat.conjunctions.end(), [](const auto &con) { return con.satisfied; });
 }
 
 static std::optional<std::vector<Variable>> recursive_dpll(DimacsFormat sat, std::vector<Variable> variables,
                                                            std::set<uint> positive, std::set<uint> negative,
-                                                           std::set<uint> all) {
+                                                           std::set<uint> all)
+{
   while (unit_propagation(sat, variables, positive, negative, all)) {
   }
 
@@ -142,7 +148,8 @@ static std::optional<std::vector<Variable>> recursive_dpll(DimacsFormat sat, std
   return std::nullopt;
 }
 
-std::optional<DPLLResult> dpll_algorithm(const DimacsFormat &sat) {
+std::optional<DPLLResult> dpll_algorithm(const DimacsFormat &sat)
+{
   // array of variables
   size_t n = sat.variables.size();
   auto iter = sat.variables.begin();
@@ -189,7 +196,8 @@ std::optional<DPLLResult> dpll_algorithm(const DimacsFormat &sat) {
       auto [poscnt, negcnt] = pair;
       if (poscnt + negcnt == 1) {
         variables[v].occurance.push_back(std::pair{index, poscnt != 0});
-      } else {
+      }
+      else {
         auto &dis = con.disjunctions;
         dis.erase(std::remove_if(dis.begin(), dis.end(), [v](auto &pair) { return pair.second == v; }), dis.end());
 

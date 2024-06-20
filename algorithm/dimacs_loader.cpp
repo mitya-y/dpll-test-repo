@@ -7,7 +7,8 @@
 #include <set>
 #include <sstream>
 
-static std::string strip(const std::string &s) {
+static std::string strip(const std::string &s)
+{
   auto start = s.find_first_not_of(" \t");
   if (start == s.npos) {
     return "";
@@ -17,7 +18,8 @@ static std::string strip(const std::string &s) {
   return s.substr(start, size);
 }
 
-std::optional<DimacsFormat> load_cnf(std::string_view filename) {
+std::optional<DimacsFormat> load_cnf(std::string_view filename)
+{
   std::ifstream file(filename.data());
   if (!file) {
     return std::nullopt;
@@ -104,7 +106,8 @@ std::optional<DimacsFormat> load_cnf(std::string_view filename) {
   };
 }
 
-void print_dimacs_format(const DimacsFormat &dimacs) {
+void print_dimacs_format(const DimacsFormat &dimacs)
+{
   std::cout << "variables: ";
   for (int v : dimacs.variables) {
     std::cout << v << " ";
@@ -119,11 +122,13 @@ void print_dimacs_format(const DimacsFormat &dimacs) {
   std::cout << "\n";
 }
 
-bool Conjunction::operator==(const Conjunction &other) const {
+bool Conjunction::operator==(const Conjunction &other) const
+{
   return other.disjunctions == disjunctions && other.number_of_free_elements == number_of_free_elements &&
          other.satisfied == satisfied;
 }
 
-bool DimacsFormat::operator==(const DimacsFormat &other) const {
+bool DimacsFormat::operator==(const DimacsFormat &other) const
+{
   return other.variables == variables && other.conjunctions == conjunctions;
 }
