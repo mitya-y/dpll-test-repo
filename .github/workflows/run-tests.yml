@@ -37,6 +37,7 @@ jobs:
     - name: Download Googletests
       run: |
         cd ${{ github.workspace }}
+        echo "hello\n"
         ls
         cd ${{ github.workspace }}/tests
         # cd ./tests
