@@ -26,7 +26,8 @@ static bool unit_propagation(DimacsFormat &sat, std::vector<Variable> &variables
 {
   uint cnt = 0;
   bool changed = false;
-  for (auto [i, con] : std::views::enumerate(sat.conjunctions)) {
+  // for (auto [i, con] : std::views::enumerate(sat.conjunctions)) {
+  for (auto con : sat.conjunctions) {
     if (con.number_of_free_elements == 1 && !con.satisfied) {
       cnt++;
       auto &dis = con.disjunctions;
@@ -55,7 +56,9 @@ static bool unit_propagation(DimacsFormat &sat, std::vector<Variable> &variables
 static void pure_variable_elimination(DimacsFormat &sat, std::vector<Variable> &variables, std::set<uint> &positive,
                                       std::set<uint> &negative, std::set<uint> &all)
 {
-  for (const auto [index, variable] : std::views::enumerate(variables)) {
+  // for (const auto [index, variable] : std::views::enumerate(variables)) {
+  uint index = 0;
+  for (auto variable : variables) {
     auto &occur = variable.occurance;
     bool all_positive = std::all_of(occur.begin(), occur.end(), [](auto &pair) { return pair.second; });
     bool all_negative = std::all_of(occur.begin(), occur.end(), [](auto &pair) { return !pair.second; });
@@ -72,6 +75,7 @@ static void pure_variable_elimination(DimacsFormat &sat, std::vector<Variable> &
         set_satisfied_flag(variables, sat.conjunctions[con]);
       }
     }
+    index++;
   }
 }
 
@@ -174,7 +178,9 @@ std::optional<DPLLResult> dpll_algorithm(const DimacsFormat &sat)
 
   // calculate occurance of each variable
   // handled variant if in one conjucion variable occur twice and more
-  for (const auto [index, con] : std::views::enumerate(formula)) {
+  // for (const auto [index, con] : std::views::enumerate(formula)) {
+  uint index = 0;
+  for (auto con : formula) {
     std::unordered_map<uint, std::pair<uint, uint>> counts;
     for (auto &&[positive, v] : con.disjunctions) {
       if (!counts.contains(v)) {
@@ -190,7 +196,7 @@ std::optional<DPLLResult> dpll_algorithm(const DimacsFormat &sat)
     for (auto &&[v, pair] : counts) {
       auto [poscnt, negcnt] = pair;
       if (poscnt + negcnt == 1) {
-        variables[v].occurance.push_back({index, poscnt != 0});
+        variables[v].occurance.push_back(std::pair {index, poscnt != 0});
       }
       else {
         auto &dis = con.disjunctions;
@@ -208,6 +214,7 @@ std::optional<DPLLResult> dpll_algorithm(const DimacsFormat &sat)
         }
       }
     }
+    index++;
   }
 
   std::set<uint> positive, negative, all;
@@ -226,7 +233,7 @@ std::optional<DPLLResult> dpll_algorithm(const DimacsFormat &sat)
   }
   std::map<uint, bool> answer;
   // TODO : reverse mappimg
-  for (const auto [index, var] : std::views::enumerate(result.value())) {
+  for (const auto var : result.value()) {
     // answer[var.index] = var.value; // todo:
     answer.insert(std::pair {var.index, var.value});
   }
