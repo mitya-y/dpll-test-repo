@@ -68,7 +68,7 @@ jobs:
       run: |
         sudo apt update && sudo apt install python3
 
-    - name: clang-format test:
+    - name: clang-format test
       run: |
         cp .github/workflows/check-clang-format.py .
         python3 check-clang-format.py
