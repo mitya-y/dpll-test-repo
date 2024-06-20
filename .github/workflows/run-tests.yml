@@ -34,17 +34,14 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
-    - name: Setup Ninja
-      uses: ashutoshvarma/setup-ninja@master
-      with:
-        version: 1.10.0
-
     - name: Download Googletests
       run: |
+        cd ${{ github.workspace }}
         cd tests && bash ./tests/install_gtests.sh && cd ..
 
     - name: Configure CMake
       run: |
+        cd ${{ github.workspace }}
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
@@ -52,8 +49,12 @@ jobs:
         -S ${{ github.workspace }}
 
     - name: Build
-      run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+      run: |
+        cd ${{ github.workspace }}
+        cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
     - name: Run tests
       run: |
-        cd build && ./dpll
+        cd ${{ github.workspace }}
+        cd build
+        ./dpll
