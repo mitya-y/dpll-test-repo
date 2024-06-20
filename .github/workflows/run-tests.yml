@@ -78,7 +78,9 @@ jobs:
     - name: clang-tidy test
       run: |
         cd utils
-        clang-tidy * -extra-arg=-std=c++23 -p="../build"
+        cd ..
+        clang-tidy * -extra-arg=-std=gnu++2b -p="../build"
         cd tests
-        clang-tidy *.cpp -extra-arg=-std=c++23 -p="../build"
+        clang-tidy *.cpp -extra-arg=-std=gnu++2b -p="../build"
+        cd ..
 
