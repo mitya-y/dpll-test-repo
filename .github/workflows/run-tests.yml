@@ -37,6 +37,7 @@ jobs:
     - name: List Directory
       run: |
         cd ${{ github.workspace }}
+        cd ..
         ls -a
 
     - name: Download Googletests
