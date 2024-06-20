@@ -37,9 +37,8 @@ jobs:
     - name: Download Googletests
       run: |
         cd ${{ github.workspace }}
-        echo $(ls)
         cd ./tests
-        bash ./tests/install_gtests.sh
+        bash ./install_gtests.sh
         cd ..
 
     - name: Configure CMake
