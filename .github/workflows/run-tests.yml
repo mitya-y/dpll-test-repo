@@ -67,6 +67,7 @@ jobs:
     - name: Setup format checks
       run: |
         sudo apt update && sudo apt install python3
+        sudo apt install clang-format
 
     - name: clang-format test
       run: |
