@@ -46,7 +46,10 @@ std::optional<DimacsFormat> load_cnf(std::string_view filename)
     return std::nullopt;
   }
 
-  auto vec = std::ranges::istream_view<int>(stream) | std::ranges::to<std::vector>();
+  // auto vec = std::ranges::istream_view<int>(stream) | std::ranges::to<std::vector>();
+  std::vector<int> vec;
+  auto readed_range = std::ranges::istream_view<int>(stream);
+  std::ranges::copy(readed_range, std::back_inserter(vec));
   if (vec.size() != 2) {
     return std::nullopt;
   }
