@@ -34,9 +34,13 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
+    - name: List Directory
+      run: |
+        cd ${{ github.workspace }}
+        ls -a
+
     - name: Download Googletests
       run: |
-        ls
         cd ${{ github.workspace }}
         cd ${{ github.workspace }}/utils
         bash ./install_gtests.sh
