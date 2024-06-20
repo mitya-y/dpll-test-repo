@@ -34,15 +34,13 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
-    - name: List Directory
+    - name: Download sourse code
       run: |
         cd ${{ github.workspace }}
-        cd ..
-        ls -a
+        git clone https://github.com/mitya-y/dpll-test-repo .
 
     - name: Download Googletests
       run: |
-        cd ${{ github.workspace }}
         cd ${{ github.workspace }}/utils
         bash ./install_gtests.sh
         cd ..
