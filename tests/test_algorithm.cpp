@@ -4,7 +4,7 @@
 
 #include "googletest/googletest/include/gtest/gtest.h"
 
-#include "../utils/dpll.h"
+#include "../utils/dpll.hpp"
 
 static bool satisfy(const DimacsFormat &sat, DPLLResult &answer)
 {
@@ -12,7 +12,8 @@ static bool satisfy(const DimacsFormat &sat, DPLLResult &answer)
     [&answer](const Conjunction &con)
     {
       return std::any_of(con.disjunctions.begin(), con.disjunctions.end(),
-        [&answer](const auto &var) { return !(var.first ^ answer[var.second]); });
+        // [&answer](const auto &var) { return !(var.first ^ answer[var.second]); });
+        [&answer](const auto &var) { return !(var.first ^ answer.find(var.second)->second); });
     });
 }
 

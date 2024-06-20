@@ -2,7 +2,7 @@
 
 #include <map>
 
-#include "dimacs_loader.h"
+#include "dimacs_loader.hpp"
 
 using DPLLResult = std::map<uint, bool>;
 

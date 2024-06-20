@@ -1,6 +1,6 @@
 #include "googletest/googletest/include/gtest/gtest.h"
 
-#include "../utils/dimacs_loader.h"
+#include "../utils/dimacs_loader.hpp"
 
 TEST(TestLoading, TestNotExistingFile)
 {
