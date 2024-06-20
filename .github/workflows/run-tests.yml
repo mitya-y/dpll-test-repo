@@ -41,13 +41,12 @@ jobs:
 
     - name: Download Googletests
       run: |
-        cd ${{ github.workspace }}/utils
+        cd tests
         bash ./install_gtests.sh
         cd ..
 
     - name: Configure CMake
       run: |
-        cd ${{ github.workspace }}
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
@@ -56,11 +55,9 @@ jobs:
 
     - name: Build
       run: |
-        cd ${{ github.workspace }}
         cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
     - name: Run tests
       run: |
-        cd ${{ github.workspace }}
         cd build
         ./dpll
