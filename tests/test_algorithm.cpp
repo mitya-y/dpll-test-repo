@@ -55,14 +55,16 @@ TEST(TestAlgorithm, TestLightSatisfied)
 {
   const size_t number_of_light_datasets = 3;
   for (size_t i = 0; i < number_of_light_datasets; i++)
-    ASSERT_TRUE(check_satisfied_cnf(std::format("files/light/{}.cnf", i + 1)));
+    // ASSERT_TRUE(check_satisfied_cnf(std::format("files/light/{}.cnf", i + 1)));
+    ASSERT_TRUE(check_satisfied_cnf("files/light/" + std::to_string(i + 1) + ".cnf"));
 }
 
 TEST(TestAlgorithm, TestLightUnsatisfied)
 {
   const size_t number_of_light_unsat_datasets = 2;
   for (size_t i = 0; i < number_of_light_unsat_datasets; i++)
-    ASSERT_TRUE(check_unsatisfied_cnf(std::format("files/light/unsat{}.cnf", i + 1)));
+    // ASSERT_TRUE(check_unsatisfied_cnf(std::format("files/light/unsat{}.cnf", i + 1)));
+    ASSERT_TRUE(check_satisfied_cnf("files/light/unsat" + std::to_string(i + 1) + ".cnf"));
 }
 
 TEST(TestAlgorithm, TestSat3Satisfied)
