@@ -37,7 +37,7 @@ jobs:
     - name: Try update gcc
       run: |
         gcc --version
-        sudo apt update && sudo apt install gcc
+        sudo apt update && sudo apt install gcc-14
         gcc --version
 
     - name: Download sourse code
