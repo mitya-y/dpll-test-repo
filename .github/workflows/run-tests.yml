@@ -34,13 +34,6 @@ jobs:
       run: |
         echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
-    - name: Try update gcc
-      run: |
-        gcc --version
-        # sudo apt update && sudo apt install gcc-13
-        sudo apt update && sudo apt install gcc-13 gcc-13-aarch64-linux-gnu
-        gcc --version
-
     - name: Download sourse code
       run: |
         cd ${{ github.workspace }}
