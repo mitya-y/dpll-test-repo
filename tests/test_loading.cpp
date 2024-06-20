@@ -1,4 +1,4 @@
-#include "../utils/dimacs_loader.hpp"
+#include "../algorithm/dimacs_loader.hpp"
 #include "googletest/googletest/include/gtest/gtest.h"
 
 TEST(TestLoading, TestNotExistingFile) {

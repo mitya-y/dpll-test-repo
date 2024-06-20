@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <filesystem>
 
-#include "../utils/dpll.hpp"
+#include "../algorithm/dpll.hpp"
 #include "googletest/googletest/include/gtest/gtest.h"
 
 static bool satisfy(const DimacsFormat &sat, DPLLResult &answer) {
