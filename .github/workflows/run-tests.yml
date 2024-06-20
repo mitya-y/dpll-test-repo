@@ -37,7 +37,7 @@ jobs:
     - name: Download Googletests
       run: |
         cd ${{ github.workspace }}
-        sudo apt upgrade && sudo apt install python
+        sudo apt update && sudo apt install python3
         'print("hello")' > bebra.py
         python3 ./bebra.py
         # ls > ls.txt
