@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.20)
 
 project("dpll")
 
-add_executable(${CMAKE_PROJECT_NAME} utils/dimacs_loader.cpp utils/dpll.cpp main.cpp)
+add_executable(${CMAKE_PROJECT_NAME} algorithm/dimacs_loader.cpp algorithm/dpll.cpp main.cpp)
 add_subdirectory(tests)
 
 set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 23)

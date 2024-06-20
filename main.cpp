@@ -3,8 +3,6 @@
 
 #include "tests/googletest/googletest/include/gtest/gtest.h"
 
-#include "utils/dpll.hpp"
-
 int main(int argc, char **argv)
 {
   ::testing::InitGoogleTest(&argc, argv);

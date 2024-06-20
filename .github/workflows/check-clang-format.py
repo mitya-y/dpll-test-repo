@@ -2,10 +2,10 @@ import os
 import filecmp
 
 files = [
-    "utils/dpll.cpp",
-    "utils/dpll.hpp",
-    "utils/dimacs_loader.cpp",
-    "utils/dimacs_loader.hpp",
+    "algorithm/dpll.cpp",
+    "algorithm/dpll.hpp",
+    "algorithm/dimacs_loader.cpp",
+    "algorithm/dimacs_loader.hpp",
 
     "tests/test_algorithm.cpp",
     "tests/test_loading.cpp"
