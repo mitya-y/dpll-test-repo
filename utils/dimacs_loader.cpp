@@ -49,7 +49,11 @@ std::optional<DimacsFormat> load_cnf(std::string_view filename)
   // auto vec = std::ranges::istream_view<int>(stream) | std::ranges::to<std::vector>();
   std::vector<int> vec;
   auto readed_range = std::ranges::istream_view<int>(stream);
-  std::ranges::copy(readed_range, std::back_inserter(vec));
+  // std::ranges::copy(readed_range, std::back_inserter(vec));
+  for (auto &&i : readed_range) {
+    vec.push_back(i);
+  }
+
   if (vec.size() != 2) {
     return std::nullopt;
   }
@@ -84,7 +88,10 @@ std::optional<DimacsFormat> load_cnf(std::string_view filename)
       std::ranges::istream_view<int>(stream) | std::views::take_while([](int var) { return var != 0; }) |
       std::views::transform([&variables](int var) { return variables.insert(std::abs(var)), var; }) |
       std::views::transform([](int var) { return std::make_pair<bool, uint>(var >= 0, std::abs(var)); });
-    std::ranges::copy(readed_range, std::back_inserter(conjunction.disjunctions));
+    // std::ranges::copy(readed_range, std::back_inserter(conjunction.disjunctions));
+    for (auto &&pair : readed_range) {
+      conjunction.disjunctions.push_back(pair);
+    }
 
     conjunction.number_of_free_elements = conjunction.disjunctions.size();
     conjunctions.push_back(std::move(conjunction));
