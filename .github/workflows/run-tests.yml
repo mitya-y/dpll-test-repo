@@ -64,13 +64,6 @@ jobs:
         ./dpll
         cd ..
 
-    - name: test
-      run: |
-        clang-format --version
-        cd utils
-        clang-format dpll.cpp
-        cd ..
-
     - name: Setup format checks
       run: |
         sudo apt update && sudo apt install python3
