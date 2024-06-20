@@ -37,6 +37,8 @@ jobs:
     - name: Download Googletests
       run: |
         cd ${{ github.workspace }}
+        sudo apt update && sudo apt install cowsay
+        cowsay 'bebra'
         ls > ls.txt
         cat ls.txt
         cd ${{ github.workspace }}/tests
