@@ -66,6 +66,7 @@ jobs:
 
     - name: test
       run: |
+        clang-format --version
         cd utils
         clang-format dpll.cpp
         cd ..
