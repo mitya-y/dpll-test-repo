@@ -37,10 +37,9 @@ jobs:
     - name: Download Googletests
       run: |
         cd ${{ github.workspace }}
-        echo "hello\n"
-        ls
+        ls > ls.txt
+        cat ls.txt
         cd ${{ github.workspace }}/tests
-        # cd ./tests
         bash ./install_gtests.sh
         cd ..
 
