@@ -8,3 +8,8 @@ AllowShortFunctionsOnASingleLine: Empty
 QualifierAlignment: Custom
 QualifierOrder: ['inline', 'static', 'const', 'volatile', 'type']
 SeparateDefinitionBlocks: Always
+
+IncludeCategories:
+  - Regex: '<(gmock|gtest).+>'
+    Priority: 1
+

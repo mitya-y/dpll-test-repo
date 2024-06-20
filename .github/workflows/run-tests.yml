@@ -68,8 +68,17 @@ jobs:
       run: |
         sudo apt update && sudo apt install python3
         sudo apt install clang-format
+        sudo apt install clang-format
 
     - name: clang-format test
       run: |
         cp .github/workflows/check-clang-format.py .
         python3 check-clang-format.py
+
+    - name: clang-tidy test
+      run: |
+        cd utils
+        clang-tidy * -extra-arg=-std=c++23 -p="../build"
+        cd tests
+        clang-tidy *.cpp -extra-arg=-std=c++23 -p="../build"
+

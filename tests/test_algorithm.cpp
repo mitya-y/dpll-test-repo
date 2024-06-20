@@ -1,6 +1,5 @@
 #include <algorithm>
 #include <filesystem>
-// https://www.cs.ubc.ca/~hoos/SATLIB/benchm.html
 
 #include "../utils/dpll.hpp"
 #include "googletest/googletest/include/gtest/gtest.h"
