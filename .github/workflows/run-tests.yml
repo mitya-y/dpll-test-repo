@@ -37,20 +37,11 @@ jobs:
     - name: Download Googletests
       run: |
         cd ${{ github.workspace }}
-
-        '
-        target="/home/personal/scripts/07_22_13/ford/$1"
-        let count=0
-        for f in "$target"/*
-        do
-            echo $(basename $f)
-            let count=count+1
-        done
-        echo ""
-        echo "Count: $count"
-        ' > bebra.sh
-        bash ./bebra.sh
-
+        sudo apt upgrade && sudo apt install python
+        'print("hello")' > bebra.py
+        python3 ./bebra.py
+        # ls > ls.txt
+        # ls.txt
         cd ${{ github.workspace }}/tests
         bash ./install_gtests.sh
         cd ..
