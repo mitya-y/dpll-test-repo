@@ -71,7 +71,7 @@ jobs:
         sudo apt install clang-tidy
         sudo apt install bear
         bear -- cmake --build build
-        mv compile_commads.json build
+        mv compile_commands.json build
 
     - name: clang-format test
       run: |
