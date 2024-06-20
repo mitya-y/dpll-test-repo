@@ -68,7 +68,6 @@ TEST(TestAlgorithm, TestSat3Satisfied)
 
 TEST(TestAlgorithm, TestSat3Unsatisfied)
 {
-  return;
   for (const auto &filename : std::filesystem::directory_iterator("files/heavy/aim/unsat"))
     ASSERT_TRUE(check_unsatisfied_cnf(filename.path().string()));
 }
@@ -81,7 +80,6 @@ TEST(TestAlgorithm, TestSatSatisfied)
 
 TEST(TestAlgorithm, TestSatUnsatisfied)
 {
-  return;
   for (const auto &filename : std::filesystem::directory_iterator("files/heavy/jnh/unsat"))
     ASSERT_TRUE(check_unsatisfied_cnf(filename.path().string()));
 }
